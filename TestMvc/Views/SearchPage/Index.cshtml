@@ -1,0 +1,49 @@
+﻿@using TestMvc.Models
+@model SearchPageModels
+
+@{
+    ViewBag.Title = "SerchPage";
+}
+
+<h2>SearchPage</h2>
+
+@using (Html.BeginForm("Search", null, FormMethod.Get))
+{
+    <div class="input-group">
+        @Html.Label("名前", new { @class = "input-group-addon" }) 
+        @Html.TextBoxFor(m => m.searchFormModel.Name ,new { @class="form-control"})
+    </div>
+    <div class="input-group">
+        @Html.Label("年齢", new { @class = "input-group-addon" })
+        @Html.TextBoxFor(m => m.searchFormModel.Age, new { @class = "form-control" })    
+    </div>
+    <div class="input-group">
+        @Html.Label("所属", new { @class = "input-group-addon" })
+        @Html.TextBoxFor(m => m.searchFormModel.Depertment, new { @class = "form-control" })
+    </div>
+    //@Html.TextBoxFor(m => m.employeeViewModels.Id)
+
+    <input type="submit" value="検索" class="btn btn-default"/>
+    
+}
+
+<hr>
+
+<table class="table table-bordered ">
+    <thead>
+        <tr>
+            <td>@Html.DisplayNameFor(m => m.employeeViewModels.First().Name) </td>
+            <td>@Html.DisplayNameFor(m => m.employeeViewModels.First().Age) </td>
+            <td>@Html.DisplayNameFor(m => m.employeeViewModels.First().Depertment) </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model.employeeViewModels) {
+            <tr>
+                <td>@emp.Name</td>
+                <td>@emp.Age</td>
+                <td>@emp.Depertment</td>
+            </tr>
+        }
+    </tbody>
+</table>
